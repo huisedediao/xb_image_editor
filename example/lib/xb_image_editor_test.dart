@@ -14,50 +14,48 @@ class XBImageEditorTest extends XBPage<XBImageEditorTestVM> {
 
   @override
   Widget buildPage(XBImageEditorTestVM vm, BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Expanded(
-              child: XBImage(
-            vm.imgData ?? vm.imgPath,
-            fit: BoxFit.contain,
-          )),
-          XBButton(
-            onTap: () async {
-              final ret = await Navigator.push(
-                  context,
-                  CupertinoPageRoute<XBImageEditorRet?>(
-                      settings: null,
-                      builder: (context) => XBImageEditor(
-                            img: vm.imgPath,
-                            initOperas: vm.operas,
-                            cancelText: "cancel",
-                            completeText: "complete",
-                            confirmText: "confirm",
-                            clipText: "clip",
-                            inputTextTip: "type text",
-                            newText: "tap to change",
-                          )));
+    return Column(
+      children: [
+        Expanded(
+            child: XBImage(
+          vm.imgData ?? vm.imgPath,
+          fit: BoxFit.contain,
+        )),
+        XBButton(
+          onTap: () async {
+            final ret = await Navigator.push(
+                context,
+                CupertinoPageRoute<XBImageEditorRet?>(
+                    settings: null,
+                    builder: (context) => XBImageEditor(
+                          img: vm.imgPath,
+                          initOperas: vm.operas,
+                          cancelText: "cancel",
+                          completeText: "complete",
+                          confirmText: "confirm",
+                          clipText: "clip",
+                          inputTextTip: "type text",
+                          newText: "tap to change",
+                        )));
 
-              if (ret != null) {
-                vm.imgData = ret.imgData;
-                vm.operas = ret.operas;
-                vm.notify();
-              }
-            },
-            coverTransparentWhileOpacity: true,
-            child: Container(
-              height: 50,
-              color: Colors.blue,
-              alignment: Alignment.center,
-              child: const Text(
-                "编辑图片",
-                style: TextStyle(color: Colors.white),
-              ),
+            if (ret != null) {
+              vm.imgData = ret.imgData;
+              vm.operas = ret.operas;
+              vm.notify();
+            }
+          },
+          coverTransparentWhileOpacity: true,
+          child: Container(
+            height: 50,
+            color: Colors.blue,
+            alignment: Alignment.center,
+            child: const Text(
+              "编辑图片",
+              style: TextStyle(color: Colors.white),
             ),
-          )
-        ],
-      ),
+          ),
+        )
+      ],
     );
   }
 }
