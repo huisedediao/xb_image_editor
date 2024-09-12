@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
@@ -160,7 +161,16 @@ Size textSize(String text, TextStyle style) {
   return textPainter.size;
 }
 
-Uint8List rotateImage(Uint8List imageData, double angle) {
+Future<Uint8List> rotateImage(Uint8List imageData, double angle) async {
+  // 使用 compute 在后台线程中处理图像
+  return await compute(_rotateImageSync, [imageData, angle]);
+}
+
+// 处理图像的同步函数
+Uint8List _rotateImageSync(List<dynamic> args) {
+  Uint8List imageData = args[0];
+  double angle = args[1];
+
   // 将 Uint8List 转换为 Image 对象
   img.Image? image = img.decodeImage(imageData);
 
@@ -172,7 +182,5 @@ Uint8List rotateImage(Uint8List imageData, double angle) {
   img.Image rotatedImage = img.copyRotate(image, angle: angle);
 
   // 将旋转后的图像转换回 Uint8List
-  Uint8List rotatedData = Uint8List.fromList(img.encodePng(rotatedImage));
-
-  return rotatedData;
+  return Uint8List.fromList(img.encodePng(rotatedImage));
 }

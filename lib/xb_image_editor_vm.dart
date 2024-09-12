@@ -183,7 +183,7 @@ class XBImageEditorVM extends XBPageVM<XBImageEditor> {
         Size newSize = operaUtil.lastClipOpear?.newSize ??
             Size(image!.width * 1.0, image!.height * 1.0);
         if (operaUtil.angle != 0) {
-          retImg = rotateImage(retImg, operaUtil.angle);
+          retImg = await rotateImage(retImg, operaUtil.angle);
           if (!operaUtil.isV) {
             newSize = Size(newSize.height, newSize.width);
           }
