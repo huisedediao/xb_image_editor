@@ -169,7 +169,7 @@ Uint8List rotateImage(Uint8List imageData, double angle) {
   }
 
   // 旋转图片
-  img.Image rotatedImage = img.copyRotate(image, angle);
+  img.Image rotatedImage = img.copyRotate(image, angle: angle);
 
   // 将旋转后的图像转换回 Uint8List
   Uint8List rotatedData = Uint8List.fromList(img.encodePng(rotatedImage));
