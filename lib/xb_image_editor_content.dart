@@ -43,7 +43,7 @@ class XBImageEditorContent extends XBVMLessWidget {
     }
 
     return Container(
-      color: xbImgEditorColorBlack,
+      color: xbImageEditorColorBlack,
       alignment: Alignment.center,
       child: RotatedBox(
           quarterTurns: -operaUtil.calculateRotate, child: childWidget(vm)),

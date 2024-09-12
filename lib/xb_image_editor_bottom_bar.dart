@@ -21,7 +21,7 @@ class XBImageEditorBottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: xbImgEditorColorBlack,
+      color: xbImageEditorColorBlack,
       child: Padding(
         padding: EdgeInsets.only(bottom: safeAreaBottom),
         child: SizedBox(

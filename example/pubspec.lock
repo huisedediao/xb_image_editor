@@ -470,15 +470,15 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.2"
+    version: "0.0.3"
   xb_scaffold:
     dependency: "direct main"
     description:
       name: xb_scaffold
-      sha256: "262169811cb123539609f132c357614aeacc3084b0a645778bbf977802fdf452"
+      sha256: "32327654559e20eb030d6c60294cea1ed73d0733f27932ebc213eb0f2c43f0f3"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.134"
+    version: "0.0.136"
   xdg_directories:
     dependency: transitive
     description:

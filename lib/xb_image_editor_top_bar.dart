@@ -8,7 +8,7 @@ class XBImageEditorTopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: xbImgEditorColorDarkGrey,
+      color: xbImageEditorColorDarkGrey,
       child: Padding(
         padding: EdgeInsets.only(top: stateBarH),
         child: SizedBox(

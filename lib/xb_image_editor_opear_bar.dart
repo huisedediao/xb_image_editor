@@ -37,7 +37,7 @@ class XBImageEditorOperaBar extends StatelessWidget {
       child = Container();
     }
     return Container(
-      color: xbImgEditorColorDarkGrey,
+      color: xbImageEditorColorDarkGrey,
       height: 60,
       child: child,
     );

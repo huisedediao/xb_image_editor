@@ -54,7 +54,7 @@ class XBImageEditorPenWidget
           vm.lastPoint = Offset.zero;
         },
         child: Container(
-          color: xbImgEditorColorBlack,
+          color: xbImageEditorColorBlack,
           // color: Colors.green,
           width: vm.contentSize.width,
           height: vm.contentSize.height,

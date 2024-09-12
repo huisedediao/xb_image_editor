@@ -21,6 +21,7 @@ class XBImageEditorVM extends XBPageVM<XBImageEditor> {
   List<XBImageEditorOpera> get operas => operaUtil.operas;
 
   XBImageEditorVM({required super.context}) {
+    tempContext = context;
     inputTextTip_ = widget.inputTextTip;
     newText_ = widget.newText;
     cancelText_ = widget.cancelText;
@@ -222,5 +223,11 @@ class XBImageEditorVM extends XBPageVM<XBImageEditor> {
   onAreaChanged(XBImageEditorClipMaskChangeInfo value) {
     clipInfo = value;
     notify();
+  }
+
+  @override
+  void dispose() {
+    tempContext = null;
+    super.dispose();
   }
 }

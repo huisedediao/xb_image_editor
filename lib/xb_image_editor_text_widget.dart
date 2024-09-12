@@ -79,7 +79,7 @@ class XBImageEditorTextWidget
           vm.onTapUp(details);
         },
         child: Container(
-          color: xbImgEditorColorBlack,
+          color: xbImageEditorColorBlack,
           // color: Colors.green,
           width: vm.contentSize.width,
           height: vm.contentSize.height,

@@ -62,12 +62,11 @@ class XBImageEditor extends XBPage<XBImageEditorVM> {
 
   @override
   Widget buildPage(XBImageEditorVM vm, BuildContext context) {
-    xbGlobalContext = context;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: ClipRRect(
         child: Container(
-          color: xbImgEditorColorDarkGrey,
+          color: xbImageEditorColorDarkGrey,
           child: Column(
             children: [
               const XBImageEditorTopBar(),
