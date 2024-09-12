@@ -142,7 +142,7 @@ class XBImageEditorOperaUtil {
 
   /// 角度
   double get angle {
-    return -calculateRotate * 90;
+    return -(calculateRotate % 4) * 90;
   }
 
   double degreesToRadians(double degrees) {
