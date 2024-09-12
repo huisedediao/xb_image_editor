@@ -17,7 +17,10 @@ class XBImageEditorRet {
   /// 所有操作
   List<XBImageEditorOpera> operas;
 
-  XBImageEditorRet({required this.imgData, required this.operas});
+  Size size;
+
+  XBImageEditorRet(
+      {required this.imgData, required this.operas, required this.size});
 }
 
 class XBImageEditor extends XBPage<XBImageEditorVM> {
@@ -29,6 +32,8 @@ class XBImageEditor extends XBPage<XBImageEditorVM> {
   final String? confirmText;
   final String? completeText;
   final String? clipText;
+  final VoidCallback? onGenerateStart;
+  final VoidCallback? onGenerateFinish;
   const XBImageEditor(
       {required this.img,
       this.initOperas,
@@ -38,6 +43,8 @@ class XBImageEditor extends XBPage<XBImageEditorVM> {
       this.confirmText,
       this.completeText,
       this.clipText,
+      this.onGenerateStart,
+      this.onGenerateFinish,
       super.key});
 
   @override

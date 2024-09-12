@@ -168,6 +168,7 @@ class XBImageEditorVM extends XBPageVM<XBImageEditor> {
       _clip();
     } else {
       if (image == null) return;
+      widget.onGenerateStart?.call();
       operaUtil.unSelectedAllTextOpera();
       Size size;
       final lastClipOpear = operaUtil.lastClipOpear;
@@ -179,13 +180,20 @@ class XBImageEditorVM extends XBPageVM<XBImageEditor> {
       Uint8List? retImg = await convertPainterToImage(
           XBImageEditorPainterNew(operaUtil: operaUtil, uiImg: image!), size);
       if (retImg != null) {
+        Size newSize = operaUtil.lastClipOpear?.newSize ??
+            Size(image!.width * 1.0, image!.height * 1.0);
         if (operaUtil.angle != 0) {
           retImg = rotateImage(retImg, operaUtil.angle);
+          if (!operaUtil.isV) {
+            newSize = Size(newSize.height, newSize.width);
+          }
         }
         XBImageEditorRet ret =
-            XBImageEditorRet(imgData: retImg, operas: operas);
+            XBImageEditorRet(imgData: retImg, operas: operas, size: newSize);
+        widget.onGenerateFinish?.call();
         pop(ret);
       } else {
+        widget.onGenerateFinish?.call();
         pop();
       }
     }
