@@ -90,11 +90,10 @@ class XBImageEditorMosaicWidgetVM
 
   addPoint(Offset point) {
     count++;
-    if (count %
-            (widget.mosaicWidthUtil.selectedMosaicWidth /
-                widget.mosaicWidthUtil.mosaicWidths.first *
-                3) !=
-        0) return;
+    int base = widget.mosaicWidthUtil.selectedMosaicWidth ~/
+        widget.mosaicWidthUtil.mosaicWidths.first *
+        3;
+    if (count % base != 0) return;
     XBImageEditorOperaMosaic? lastMosaicOpera =
         widget.operaUtil.lastMosaicOpear;
     if (lastMosaicOpera == null) return;
