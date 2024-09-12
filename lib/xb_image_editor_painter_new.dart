@@ -117,13 +117,13 @@ class XBImageEditorPainterNew extends CustomPainter {
               textPainter.size.width,
               textPainter.size.height,
             );
-            rectBorderPaint.strokeWidth = 1 * opera.scale;
+            rectBorderPaint.strokeWidth = opera.lineWidth * opera.scale;
             canvas.drawRect(rect, rectBorderPaint);
 
             // 绘制删除的“X”
             final xPaint = Paint()
               ..color = opera.color
-              ..strokeWidth = 1 * opera.scale; // X的颜色
+              ..strokeWidth = opera.lineWidth * opera.scale; // X的颜色
             final xSize = opera.xSize; // X的大小
             final gap = opera.xGap;
             canvas.drawLine(
@@ -142,7 +142,7 @@ class XBImageEditorPainterNew extends CustomPainter {
           textPainter.paint(canvas, const Offset(0, 0));
 
           _drawSelectedStateIfNeed(
-              textOpera: opera,
+              opera: opera,
               rb: Offset(textPainter.size.width, textPainter.height),
               canvas: canvas);
 
@@ -154,21 +154,21 @@ class XBImageEditorPainterNew extends CustomPainter {
   }
 
   _drawSelectedStateIfNeed(
-      {required XBImageEditorOperaText textOpera,
+      {required XBImageEditorOperaText opera,
       required Offset rb,
       required Canvas canvas}) {
-    if (textOpera.isSelected) {
+    if (opera.isSelected) {
       final selectedSquarePaint = Paint()
-        ..color = textOpera.color
-        ..strokeWidth = 1.0 * textOpera.scale
+        ..color = opera.color
+        ..strokeWidth = opera.lineWidth * opera.scale
         ..style = PaintingStyle.stroke;
 
       // Calculate the position of the small square at the lower right corner
-      final squareSize = textOpera
-          .editSize; // Adjust this value to change the size of the square
+      final squareSize =
+          opera.editSize; // Adjust this value to change the size of the square
       final squareRect = Rect.fromLTWH(
-        rb.dx + textOpera.editGap,
-        rb.dy + textOpera.editGap,
+        rb.dx + opera.editGap,
+        rb.dy + opera.editGap,
         squareSize,
         squareSize,
       );
@@ -190,9 +190,9 @@ class XBImageEditorPainterNew extends CustomPainter {
       // canvas.rotate(pi / 4);
 
       // Draw a circle in the middle of the square
-      final circleRadius = 1 * textOpera.scale; // Radius for a 5x5 circle
+      final circleRadius = 1 * opera.scale; // Radius for a 5x5 circle
       final circlePaint = Paint()
-        ..color = textOpera.color
+        ..color = opera.color
         ..style = PaintingStyle.fill;
       canvas.drawCircle(const Offset(0, 0), circleRadius, circlePaint);
 

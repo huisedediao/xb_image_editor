@@ -23,6 +23,7 @@ class XBImageEditorOperaText extends XBImageEditorOpera {
   final double xGap;
   final double editSize;
   final double editGap;
+  final double lineWidth;
 
   Size get getTextSize => textSize(text, TextStyle(fontSize: fontSize * scale));
 
@@ -86,24 +87,25 @@ class XBImageEditorOperaText extends XBImageEditorOpera {
     required this.xGap,
     required this.editSize,
     required this.editGap,
+    required this.lineWidth,
   });
 
   @override
   XBImageEditorOpera deepCopy() {
     return XBImageEditorOperaText(
-      position: position,
-      text: text,
-      color: color,
-      fontSize: fontSize,
-      scale: scale,
-      angle: angle,
-      isSelected: isSelected,
-      isTaping: isTaping,
-      isTapingEdit: isTapingEdit,
-      xSize: xSize,
-      xGap: xGap,
-      editSize: editSize,
-      editGap: editGap,
-    );
+        position: position,
+        text: text,
+        color: color,
+        fontSize: fontSize,
+        scale: scale,
+        angle: angle,
+        isSelected: isSelected,
+        isTaping: isTaping,
+        isTapingEdit: isTapingEdit,
+        xSize: xSize,
+        xGap: xGap,
+        editSize: editSize,
+        editGap: editGap,
+        lineWidth: lineWidth);
   }
 }

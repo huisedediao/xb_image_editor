@@ -204,7 +204,8 @@ class XBImageEditorTextWidgetVM
         xGap: 2.5 * initDisplayScale * operaScale,
         editSize: 15 * initDisplayScale * operaScale,
         editGap: 2.5 * initDisplayScale * operaScale,
-        angle: widget.operaUtil.calculateRotate * 90));
+        angle: widget.operaUtil.calculateRotate * 90,
+        lineWidth: 1 * initDisplayScale));
     widget.operaUtil.notify();
   }
 
