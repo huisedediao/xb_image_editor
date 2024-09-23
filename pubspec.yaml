@@ -1,10 +1,10 @@
 name: xb_image_editor
 description: "A new Flutter image editor project."
-version: 0.0.8
+version: 0.0.9
 homepage: https://github.com/huisedediao/xb_image_editor.git
 
 environment:
-  sdk: '>=3.2.2 <4.0.0'
+  sdk: '>=2.19.6 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
