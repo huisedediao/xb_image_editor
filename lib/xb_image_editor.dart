@@ -97,6 +97,7 @@ class XBImageEditor extends XBPage<XBImageEditorVM> {
               ),
               XBImageEditorBottomBar(
                   onPrevious: vm.onPrevious,
+                  onClean: vm.onClean,
                   isCanPrevious: vm.operas.isNotEmpty,
                   selectedOperaIndex: vm.operaType.index,
                   brTitle: vm.brTitle,

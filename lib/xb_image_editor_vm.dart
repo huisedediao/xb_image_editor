@@ -159,6 +159,13 @@ class XBImageEditorVM extends XBPageVM<XBImageEditor> {
     notify();
   }
 
+  onClean() {
+    if (operas.isEmpty) return;
+    operas.clear();
+    contentKey++;
+    notify();
+  }
+
   String get brTitle {
     return isNeedShowClipBtn ? (clipText_ ?? "裁剪") : (completeText_ ?? "完成");
   }

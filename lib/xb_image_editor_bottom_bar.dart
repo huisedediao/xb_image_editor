@@ -8,12 +8,14 @@ class XBImageEditorBottomBar extends StatelessWidget {
   final ValueChanged<int> onOperaChanged;
   final String brTitle;
   final VoidCallback onPrevious;
+  final VoidCallback onClean;
   final VoidCallback onTapBr;
   const XBImageEditorBottomBar(
       {required this.isCanPrevious,
       required this.selectedOperaIndex,
       required this.onOperaChanged,
       required this.onPrevious,
+      required this.onClean,
       required this.brTitle,
       required this.onTapBr,
       super.key});
@@ -28,23 +30,27 @@ class XBImageEditorBottomBar extends StatelessWidget {
           height: 50,
           child: Row(
             children: [
-              XBButton(
-                onTap: onPrevious,
-                coverTransparentWhileOpacity: true,
-                child: Container(
-                  alignment: Alignment.center,
-                  width: 65,
-                  child: generateIcon(isCanPrevious,
-                      imgSel:
-                          "packages/xb_image_editor/assets/images/previous_step_blue.png",
-                      imgNor:
-                          "packages/xb_image_editor/assets/images/previous_step_grey.png",
-                      imgW: 27),
-                ),
-              ),
               Expanded(
                   child: Row(
                 children: [
+                  Expanded(
+                    child: generateBtn(isCanPrevious,
+                        onTap: onPrevious,
+                        imgSel:
+                            "packages/xb_image_editor/assets/images/previous_step_blue.png",
+                        imgNor:
+                            "packages/xb_image_editor/assets/images/previous_step_grey.png",
+                        imgW: 27),
+                  ),
+                  Expanded(
+                    child: generateBtn(isCanPrevious,
+                        onTap: onClean,
+                        imgSel:
+                            "packages/xb_image_editor/assets/images/edit_clear_blue.png",
+                        imgNor:
+                            "packages/xb_image_editor/assets/images/edit_clear_grey.png",
+                        imgW: 22),
+                  ),
                   Expanded(
                     child: generateBtn(selectedOperaIndex == 0, onTap: () {
                       onOperaChanged(0);
