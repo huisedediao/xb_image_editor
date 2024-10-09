@@ -92,7 +92,7 @@ class XBImageEditorMosaicWidgetVM
     if (lastMosaicOpera == null) return;
     final temp = rawPosition(point);
     XBImageEditorOperaMosaicPoint mosaicPoint = XBImageEditorOperaMosaicPoint(
-        color: colors.randColor.withAlpha(50), position: temp);
+        color: colors.randColor.withAlpha(30), position: temp);
     lastMosaicOpera.points.add(mosaicPoint);
     widget.operaUtil.notify();
   }
