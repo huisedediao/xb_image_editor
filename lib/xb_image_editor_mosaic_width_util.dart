@@ -5,7 +5,7 @@ class XBImageEditorMosaicWidthUtil {
   final VoidCallback onChanged;
   XBImageEditorMosaicWidthUtil({required this.onChanged});
   double get selectedMosaicWidth => mosaicWidths[mosaicWidthIndex];
-  int _mosaicWidthIndex = 0;
+  int _mosaicWidthIndex = 3;
   int get mosaicWidthIndex => _mosaicWidthIndex;
   set mosaicWidthIndex(int newValue) {
     _mosaicWidthIndex = newValue;
