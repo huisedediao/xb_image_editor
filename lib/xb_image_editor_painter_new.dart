@@ -39,116 +39,98 @@ class XBImageEditorPainterNew extends CustomPainter {
       canvas.drawImage(uiImg, Offset.zero, imgPaint);
     }
 
-    /// 画马赛克
-    {
-      final mosaicPaint = Paint()..style = PaintingStyle.fill;
-      for (var opera in operaUtil.operas) {
-        if (opera is XBImageEditorOperaMosaic) {
-          final width = opera.lineWidth * opera.scale;
-          for (var element in opera.points) {
-            mosaicPaint.color = element.color;
-            final position = element.position;
-            canvas.drawRect(
-              Rect.fromCenter(
-                center: position,
-                width: width, // You can change the size of mosaics
-                height: width,
-              ),
-              mosaicPaint,
-            );
-          }
+    for (var opera in operaUtil.operas) {
+      if (opera is XBImageEditorOperaPen) {
+        Paint paint = Paint()..strokeCap = StrokeCap.round;
+        paint.color = opera.color;
+        paint.strokeWidth = opera.lineWidth * opera.scale;
+        final points = opera.points;
+        for (int i = 0; i < points.length - 1; i++) {
+          // 画线段连接相邻的点
+          canvas.drawLine(points[i], points[i + 1], paint);
         }
-      }
-    }
-
-    /// 画轨迹
-    {
-      Paint paint = Paint()..strokeCap = StrokeCap.round;
-      for (var opera in operaUtil.operas) {
-        if (opera is XBImageEditorOperaPen) {
-          paint.color = opera.color;
-          paint.strokeWidth = opera.lineWidth * opera.scale;
-          final points = opera.points;
-          for (int i = 0; i < points.length - 1; i++) {
-            // 画线段连接相邻的点
-            canvas.drawLine(points[i], points[i + 1], paint);
-          }
-        }
-      }
-    }
-
-    /// 画文字
-    {
-      TextSpan textSpan;
-      TextPainter textPainter;
-      final rectBorderPaint = Paint()..style = PaintingStyle.stroke;
-
-      for (var opera in operaUtil.operas) {
-        if (opera is XBImageEditorOperaText) {
-          rectBorderPaint.color = opera.color;
-          textSpan = TextSpan(
-            text: opera.text,
-            style: TextStyle(
-                color: opera.color, fontSize: opera.fontSize * opera.scale),
+      } else if (opera is XBImageEditorOperaMosaic) {
+        final mosaicPaint = Paint()..style = PaintingStyle.fill;
+        final width = opera.lineWidth * opera.scale;
+        for (var element in opera.points) {
+          mosaicPaint.color = element.color;
+          final position = element.position;
+          canvas.drawRect(
+            Rect.fromCenter(
+              center: position,
+              width: width, // You can change the size of mosaics
+              height: width,
+            ),
+            mosaicPaint,
           );
-          textPainter = TextPainter(
-            text: textSpan,
-            textDirection: TextDirection.ltr,
-          );
-          textPainter.layout();
-          // 保存当前画布状态
-          canvas.save();
-
-          // 将画布的中心点平移到文本的位置
-          canvas.translate(opera.position.dx + textPainter.width / 2,
-              opera.position.dy + textPainter.height / 2);
-
-          // 旋转（以弧度表示：45度 = pi/4）
-          canvas.rotate(opera.angle * 3.1415927 / 180);
-
-          // 重新将画布的参考点平移回文本左上角
-          canvas.translate(-textPainter.width / 2, -textPainter.height / 2);
-
-          if (opera.isSelected) {
-            /// 为文字添加边框
-            final rect = Rect.fromLTWH(
-              0,
-              0,
-              textPainter.size.width,
-              textPainter.size.height,
-            );
-            rectBorderPaint.strokeWidth = opera.lineWidth * opera.scale;
-            canvas.drawRect(rect, rectBorderPaint);
-
-            // 绘制删除的“X”
-            final xPaint = Paint()
-              ..color = opera.color
-              ..strokeWidth = opera.lineWidth * opera.scale; // X的颜色
-            final xSize = opera.xSize; // X的大小
-            final gap = opera.xGap;
-            canvas.drawLine(
-              Offset(-xSize - gap, -xSize - gap),
-              Offset(-gap, -gap),
-              xPaint,
-            );
-            canvas.drawLine(
-              Offset(-gap, -xSize - gap),
-              Offset(-xSize - gap, -gap),
-              xPaint,
-            );
-          }
-
-          // 绘制文字
-          textPainter.paint(canvas, const Offset(0, 0));
-
-          _drawSelectedStateIfNeed(
-              opera: opera,
-              rb: Offset(textPainter.size.width, textPainter.height),
-              canvas: canvas);
-
-          // 恢复画布状态
-          canvas.restore();
         }
+      } else if (opera is XBImageEditorOperaText) {
+        TextSpan textSpan;
+        TextPainter textPainter;
+        final rectBorderPaint = Paint()..style = PaintingStyle.stroke;
+        rectBorderPaint.color = opera.color;
+        textSpan = TextSpan(
+          text: opera.text,
+          style: TextStyle(
+              color: opera.color, fontSize: opera.fontSize * opera.scale),
+        );
+        textPainter = TextPainter(
+          text: textSpan,
+          textDirection: TextDirection.ltr,
+        );
+        textPainter.layout();
+        // 保存当前画布状态
+        canvas.save();
+
+        // 将画布的中心点平移到文本的位置
+        canvas.translate(opera.position.dx + textPainter.width / 2,
+            opera.position.dy + textPainter.height / 2);
+
+        // 旋转（以弧度表示：45度 = pi/4）
+        canvas.rotate(opera.angle * 3.1415927 / 180);
+
+        // 重新将画布的参考点平移回文本左上角
+        canvas.translate(-textPainter.width / 2, -textPainter.height / 2);
+
+        if (opera.isSelected) {
+          /// 为文字添加边框
+          final rect = Rect.fromLTWH(
+            0,
+            0,
+            textPainter.size.width,
+            textPainter.size.height,
+          );
+          rectBorderPaint.strokeWidth = opera.lineWidth * opera.scale;
+          canvas.drawRect(rect, rectBorderPaint);
+
+          // 绘制删除的“X”
+          final xPaint = Paint()
+            ..color = opera.color
+            ..strokeWidth = opera.lineWidth * opera.scale; // X的颜色
+          final xSize = opera.xSize; // X的大小
+          final gap = opera.xGap;
+          canvas.drawLine(
+            Offset(-xSize - gap, -xSize - gap),
+            Offset(-gap, -gap),
+            xPaint,
+          );
+          canvas.drawLine(
+            Offset(-gap, -xSize - gap),
+            Offset(-xSize - gap, -gap),
+            xPaint,
+          );
+        }
+
+        // 绘制文字
+        textPainter.paint(canvas, const Offset(0, 0));
+
+        _drawSelectedStateIfNeed(
+            opera: opera,
+            rb: Offset(textPainter.size.width, textPainter.height),
+            canvas: canvas);
+
+        // 恢复画布状态
+        canvas.restore();
       }
     }
   }
