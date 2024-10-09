@@ -10,9 +10,10 @@ import 'xb_image_editor_top_bar.dart';
 import 'xb_image_editor_vm.dart';
 export 'xb_image_editor_opera.dart';
 
+/// imgData为null，则表示没有对图片进行编辑
 class XBImageEditorRet {
   /// 编辑后的图片
-  Uint8List imgData;
+  Uint8List? imgData;
 
   /// 所有操作
   List<XBImageEditorOpera> operas;

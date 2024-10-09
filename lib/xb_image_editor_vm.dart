@@ -175,6 +175,11 @@ class XBImageEditorVM extends XBPageVM<XBImageEditor> {
       _clip();
     } else {
       if (image == null) return;
+      if (operas.isEmpty) {
+        XBImageEditorRet ret =
+            XBImageEditorRet(imgData: null, operas: operas, size: Size.zero);
+        pop(ret);
+      }
       widget.onGenerateStart?.call();
       operaUtil.unSelectedAllTextOpera();
       Size size;
