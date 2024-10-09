@@ -64,7 +64,8 @@ class XBImageEditorTestVM extends XBPageVM<XBImageEditorTest> {
   XBImageEditorTestVM({required super.context});
 
   // final String imgPath = "assets/images/test6.jpg";
-  final String imgPath = "assets/images/function_bg.png";
+  // final String imgPath = "assets/images/function_bg.png";
+  final String imgPath = "assets/images/testbig.jpg";
 
   List<XBImageEditorOpera> operas = [];
 

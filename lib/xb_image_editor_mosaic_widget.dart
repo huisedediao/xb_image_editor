@@ -86,20 +86,13 @@ class XBImageEditorMosaicWidgetVM
         scale: operaScale));
   }
 
-  int count = 0;
-
   addPoint(Offset point) {
-    count++;
-    int base = widget.mosaicWidthUtil.selectedMosaicWidth ~/
-        widget.mosaicWidthUtil.mosaicWidths.first *
-        3;
-    if (count % base != 0) return;
     XBImageEditorOperaMosaic? lastMosaicOpera =
         widget.operaUtil.lastMosaicOpear;
     if (lastMosaicOpera == null) return;
     final temp = rawPosition(point);
     XBImageEditorOperaMosaicPoint mosaicPoint = XBImageEditorOperaMosaicPoint(
-        color: colors.randColor.withAlpha(80), position: temp);
+        color: colors.randColor.withAlpha(50), position: temp);
     lastMosaicOpera.points.add(mosaicPoint);
     widget.operaUtil.notify();
   }
