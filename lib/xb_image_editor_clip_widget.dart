@@ -5,7 +5,7 @@ import 'model/xb_image_editor_graph_model.dart';
 import 'xb_image_editor_clip_mask_painter_widget.dart';
 import 'xb_image_editor_config.dart';
 import 'xb_image_editor_img_display_vm.dart';
-import 'xb_image_editor_painter_new.dart';
+import 'xb_image_editor_painter.dart';
 
 class XBImageEditorClipWidget
     extends XBImageEditorImgDisplay<XBImageEditorClipWidgetVM> {
@@ -28,7 +28,7 @@ class XBImageEditorClipWidget
   Widget buildWidget(XBImageEditorClipWidgetVM vm, BuildContext context) {
     final fixedSize = vm.fixedImgSize;
     Widget child = CustomPaint(
-      painter: XBImageEditorPainterNew(operaUtil: operaUtil, uiImg: image),
+      painter: XBImageEditorPainter(operaUtil: operaUtil, uiImg: image),
     );
     return Center(
       child: GestureDetector(

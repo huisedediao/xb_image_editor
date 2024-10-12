@@ -7,7 +7,7 @@ import 'xb_image_editor_funs.dart';
 import 'xb_image_editor_img_display_vm.dart';
 import 'xb_image_editor_color_util.dart';
 import 'xb_image_editor_opera_text.dart';
-import 'xb_image_editor_painter_new.dart';
+import 'xb_image_editor_painter.dart';
 
 class XBImageEditorTextWidget
     extends XBImageEditorImgDisplay<XBImageEditorTextWidgetVM> {
@@ -28,7 +28,7 @@ class XBImageEditorTextWidget
   Widget buildWidget(XBImageEditorTextWidgetVM vm, BuildContext context) {
     final fixedSize = vm.fixedImgSize;
     Widget child = CustomPaint(
-      painter: XBImageEditorPainterNew(operaUtil: operaUtil, uiImg: image),
+      painter: XBImageEditorPainter(operaUtil: operaUtil, uiImg: image),
     );
     return Center(
       child: GestureDetector(

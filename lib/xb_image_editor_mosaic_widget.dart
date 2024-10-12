@@ -6,7 +6,7 @@ import 'xb_image_editor_config.dart';
 import 'xb_image_editor_img_display_vm.dart';
 import 'xb_image_editor_mosaic_width_util.dart';
 import 'xb_image_editor_opera_mosaic.dart';
-import 'xb_image_editor_painter_new.dart';
+import 'xb_image_editor_painter.dart';
 
 class XBImageEditorMosaicWidget
     extends XBImageEditorImgDisplay<XBImageEditorMosaicWidgetVM> {
@@ -27,7 +27,7 @@ class XBImageEditorMosaicWidget
   Widget buildWidget(XBImageEditorMosaicWidgetVM vm, BuildContext context) {
     final fixedSize = vm.fixedImgSize;
     Widget child = CustomPaint(
-      painter: XBImageEditorPainterNew(operaUtil: operaUtil, uiImg: image),
+      painter: XBImageEditorPainter(operaUtil: operaUtil, uiImg: image),
     );
     return Center(
       child: GestureDetector(

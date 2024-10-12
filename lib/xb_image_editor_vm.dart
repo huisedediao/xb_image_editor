@@ -12,7 +12,7 @@ import 'xb_image_editor_opera_clip.dart';
 import 'xb_image_editor_opera_rotate.dart';
 import 'dart:ui' as ui;
 import 'xb_image_editor_opera_util.dart';
-import 'xb_image_editor_painter_new.dart';
+import 'xb_image_editor_painter.dart';
 
 class XBImageEditorVM extends XBPageVM<XBImageEditor> {
   ui.Image? image;
@@ -192,7 +192,7 @@ class XBImageEditorVM extends XBPageVM<XBImageEditor> {
         size = lastClipOpear.newSize;
       }
       Uint8List? retImg = await convertPainterToImage(
-          XBImageEditorPainterNew(operaUtil: operaUtil, uiImg: image!), size);
+          XBImageEditorPainter(operaUtil: operaUtil, uiImg: image!), size);
       if (retImg != null) {
         Size newSize = operaUtil.lastClipOpear?.newSize ??
             Size(image!.width * 1.0, image!.height * 1.0);

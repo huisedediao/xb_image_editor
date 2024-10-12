@@ -7,11 +7,11 @@ import 'xb_image_editor_opera_pen.dart';
 import 'xb_image_editor_opera_text.dart';
 import 'xb_image_editor_opera_util.dart';
 
-class XBImageEditorPainterNew extends CustomPainter {
+class XBImageEditorPainter extends CustomPainter {
   final ui.Image uiImg;
   final XBImageEditorOperaUtil operaUtil;
 
-  XBImageEditorPainterNew({required this.operaUtil, required this.uiImg});
+  XBImageEditorPainter({required this.operaUtil, required this.uiImg});
 
   XBImageEditorOperaClip? get lastClipOpear => operaUtil.lastClipOpear;
 
