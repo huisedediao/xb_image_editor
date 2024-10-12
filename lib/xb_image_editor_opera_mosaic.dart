@@ -9,19 +9,15 @@ class XBImageEditorOperaMosaicPoint {
 
 class XBImageEditorOperaMosaic extends XBImageEditorOpera {
   final List<XBImageEditorOperaMosaicPoint> points;
-  final Color color;
   final double lineWidth;
   final double scale;
 
   XBImageEditorOperaMosaic(
-      {required this.points,
-      required this.color,
-      required this.lineWidth,
-      required this.scale});
+      {required this.points, required this.lineWidth, required this.scale});
 
   @override
   XBImageEditorOpera deepCopy() {
     return XBImageEditorOperaMosaic(
-        points: points, color: color, lineWidth: lineWidth, scale: scale);
+        points: points, lineWidth: lineWidth, scale: scale);
   }
 }

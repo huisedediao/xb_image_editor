@@ -55,14 +55,16 @@ class XBImageEditorPainterNew extends CustomPainter {
         for (var element in opera.points) {
           mosaicPaint.color = element.color;
           final position = element.position;
-          canvas.drawRect(
-            Rect.fromCenter(
-              center: position,
-              width: width, // You can change the size of mosaics
-              height: width,
-            ),
-            mosaicPaint,
+          final rect = Rect.fromCenter(
+            center: position,
+            width: width,
+            height: width,
           );
+          final rrect = RRect.fromRectAndRadius(
+            rect,
+            Radius.circular(width * 0.3),
+          );
+          canvas.drawRRect(rrect, mosaicPaint);
         }
       } else if (opera is XBImageEditorOperaText) {
         TextSpan textSpan;

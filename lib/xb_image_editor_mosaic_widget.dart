@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:xb_scaffold/xb_scaffold.dart';
 import 'xb_image_editor_config.dart';
@@ -82,7 +82,6 @@ class XBImageEditorMosaicWidgetVM
   addOpera() {
     widget.operaUtil.add(XBImageEditorOperaMosaic(
         points: [],
-        color: colors.randColor.withAlpha(80),
         lineWidth:
             widget.mosaicWidthUtil.selectedMosaicWidth * initDisplayScale,
         scale: operaScale));
@@ -94,7 +93,9 @@ class XBImageEditorMosaicWidgetVM
     if (lastMosaicOpera == null) return;
     final temp = rawPosition(point);
     XBImageEditorOperaMosaicPoint mosaicPoint = XBImageEditorOperaMosaicPoint(
-        color: colors.randColor.withAlpha(Platform.isAndroid ? 30 : 80),
+        color: Color.fromARGB(255, Random().nextInt(50) + 150,
+                Random().nextInt(50) + 150, Random().nextInt(50) + 150)
+            .withAlpha(Platform.isAndroid ? 30 : 80),
         position: temp);
     lastMosaicOpera.points.add(mosaicPoint);
     widget.operaUtil.notify();
