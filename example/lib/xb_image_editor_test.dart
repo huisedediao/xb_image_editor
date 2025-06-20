@@ -36,6 +36,11 @@ class XBImageEditorTest extends XBPage<XBImageEditorTestVM> {
                           clipText: "clip",
                           inputTextTip: "type text",
                           newText: "tap to change",
+                          needOperaTypes: [
+                            XBImageEditorOperaType.text,
+                            XBImageEditorOperaType.pen,
+                            XBImageEditorOperaType.mosaic,
+                          ],
                         )));
 
             if (ret != null) {

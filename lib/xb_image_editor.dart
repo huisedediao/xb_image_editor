@@ -9,6 +9,7 @@ import 'xb_image_editor_opera.dart';
 import 'xb_image_editor_top_bar.dart';
 import 'xb_image_editor_vm.dart';
 export 'xb_image_editor_opera.dart';
+export 'xb_image_editor_config.dart';
 
 /// imgData为null，则表示没有对图片进行编辑
 class XBImageEditorRet {
@@ -35,6 +36,7 @@ class XBImageEditor extends XBPage<XBImageEditorVM> {
   final String? clipText;
   final VoidCallback? onGenerateStart;
   final VoidCallback? onGenerateFinish;
+  final List<XBImageEditorOperaType>? needOperaTypes;
   const XBImageEditor(
       {required this.img,
       this.initOperas,
@@ -46,6 +48,7 @@ class XBImageEditor extends XBPage<XBImageEditorVM> {
       this.clipText,
       this.onGenerateStart,
       this.onGenerateFinish,
+      this.needOperaTypes,
       super.key});
 
   @override
@@ -97,6 +100,7 @@ class XBImageEditor extends XBPage<XBImageEditorVM> {
                 textColorUtil: vm.textColorUtil,
               ),
               XBImageEditorBottomBar(
+                  needOperaTypes: needOperaTypes,
                   onPrevious: vm.onPrevious,
                   onClean: vm.onClean,
                   isCanPrevious: vm.operas.isNotEmpty,

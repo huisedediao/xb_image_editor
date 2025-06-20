@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:xb_scaffold/xb_scaffold.dart';
 import 'xb_image_editor_config.dart';
 
@@ -10,6 +11,7 @@ class XBImageEditorBottomBar extends StatelessWidget {
   final VoidCallback onPrevious;
   final VoidCallback onClean;
   final VoidCallback onTapBr;
+  final List<XBImageEditorOperaType>? needOperaTypes;
   const XBImageEditorBottomBar(
       {required this.isCanPrevious,
       required this.selectedOperaIndex,
@@ -18,10 +20,18 @@ class XBImageEditorBottomBar extends StatelessWidget {
       required this.onClean,
       required this.brTitle,
       required this.onTapBr,
+      this.needOperaTypes,
       super.key});
 
   @override
   Widget build(BuildContext context) {
+    final needOperaTypesTemp = needOperaTypes ??
+        [
+          XBImageEditorOperaType.pen,
+          XBImageEditorOperaType.mosaic,
+          XBImageEditorOperaType.clip,
+          XBImageEditorOperaType.text
+        ];
     return Container(
       color: xbImageEditorColorBlack,
       child: Padding(
@@ -51,46 +61,60 @@ class XBImageEditorBottomBar extends StatelessWidget {
                             "packages/xb_image_editor/assets/images/edit_clear_grey.png",
                         imgW: 22),
                   ),
-                  Expanded(
-                    child: generateBtn(selectedOperaIndex == 0, onTap: () {
-                      onOperaChanged(0);
-                    },
-                        imgSel:
-                            "packages/xb_image_editor/assets/images/edit_pen_blue.png",
-                        imgNor:
-                            "packages/xb_image_editor/assets/images/edit_pen_white.png",
-                        imgW: 20),
+                  Visibility(
+                    visible:
+                        needOperaTypesTemp.contains(XBImageEditorOperaType.pen),
+                    child: Expanded(
+                      child: generateBtn(selectedOperaIndex == 0, onTap: () {
+                        onOperaChanged(0);
+                      },
+                          imgSel:
+                              "packages/xb_image_editor/assets/images/edit_pen_blue.png",
+                          imgNor:
+                              "packages/xb_image_editor/assets/images/edit_pen_white.png",
+                          imgW: 20),
+                    ),
                   ),
-                  Expanded(
-                    child: generateBtn(selectedOperaIndex == 1, onTap: () {
-                      onOperaChanged(1);
-                    },
-                        imgSel:
-                            "packages/xb_image_editor/assets/images/edit_mosaic_blue.png",
-                        imgNor:
-                            "packages/xb_image_editor/assets/images/edit_mosaic_white.png",
-                        imgW: 20),
+                  Visibility(
+                    visible: needOperaTypesTemp
+                        .contains(XBImageEditorOperaType.mosaic),
+                    child: Expanded(
+                      child: generateBtn(selectedOperaIndex == 1, onTap: () {
+                        onOperaChanged(1);
+                      },
+                          imgSel:
+                              "packages/xb_image_editor/assets/images/edit_mosaic_blue.png",
+                          imgNor:
+                              "packages/xb_image_editor/assets/images/edit_mosaic_white.png",
+                          imgW: 20),
+                    ),
                   ),
-                  Expanded(
-                    child: generateBtn(selectedOperaIndex == 2, onTap: () {
-                      onOperaChanged(2);
-                    },
-                        imgSel:
-                            "packages/xb_image_editor/assets/images/edit_clip_blue.png",
-                        imgNor:
-                            "packages/xb_image_editor/assets/images/edit_clip_white.png",
-                        imgW: 20),
-                  ),
-                  Expanded(
-                    child: generateBtn(selectedOperaIndex == 3, onTap: () {
-                      onOperaChanged(3);
-                    },
-                        imgSel:
-                            "packages/xb_image_editor/assets/images/edit_text_blue.png",
-                        imgNor:
-                            "packages/xb_image_editor/assets/images/edit_text_white.png",
-                        imgW: 20),
-                  ),
+                  Visibility(
+                      visible: needOperaTypesTemp
+                          .contains(XBImageEditorOperaType.clip),
+                      child: Expanded(
+                        child: generateBtn(selectedOperaIndex == 2, onTap: () {
+                          onOperaChanged(2);
+                        },
+                            imgSel:
+                                "packages/xb_image_editor/assets/images/edit_clip_blue.png",
+                            imgNor:
+                                "packages/xb_image_editor/assets/images/edit_clip_white.png",
+                            imgW: 20),
+                      )),
+                  Visibility(
+                      visible: needOperaTypesTemp
+                          .contains(XBImageEditorOperaType.text),
+                      child: Expanded(
+                        child: generateBtn(selectedOperaIndex == 3, onTap: () {
+                          onOperaChanged(3);
+                        },
+                            imgSel:
+                                "packages/xb_image_editor/assets/images/edit_text_blue.png",
+                            imgNor:
+                                "packages/xb_image_editor/assets/images/edit_text_white.png",
+                            imgW: 20),
+                      )),
                 ],
               )),
               XBButton(
